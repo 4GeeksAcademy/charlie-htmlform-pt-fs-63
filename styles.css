@@ -1,0 +1,30 @@
+/* default svg size */
+svg{
+    height: 3vh;
+    width: 3vw;
+}
+/* style radio button to match sizes*/
+input[type=radio]{
+    -ms-transform: scale(0.60); /* IE 9 */
+    -webkit-transform: scale(0.60); /* Chrome, Safari, Opera */
+    transform: scale(0.60);
+    margin-bottom: 5%;
+}
+/* remove incremental buttons for number inputs */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+@media only screen and (max-width: 500px) {
+  svg {
+    width: 5vw;
+    height: 5vh;
+  }
+}
+@media only screen and (max-width: 700px) {
+  svg {
+    width: 4vw;
+    height: 4vh;
+  }
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <!-- Sacado de stack overflow, sólo quería que me añadiera un guión cada 4 números en la tarjeta, para que 
+        quedara bien. -->
+    <script>
+        function addHyphen(element) {
+            let ele = document.getElementById(element.id);
+            ele = ele.value.split('-').join('');    // Remove dash (-) if mistakenly entered.
+
+            let finalVal = ele.match(/.{1,4}/g).join('-');
+            document.getElementById(element.id).value = finalVal;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="continer-fluid p-5">
+        <form class="card m-3">
+            <!-- Header / title of form -->
+            <h3 class="card-header">Payment form example</h3>
+
+            <div class="card-body">
+                <!-- Default alert first row -->
+                <div class="row alert alert-danger mx-1">
+                    Some fields are missing
+                </div>
+                <!-- Second row -->
+                <div class="row mb-2">
+                    <!-- Card number -->
+                    <div class="col-sm-5">
+                        <label for="cardnum">Card #</label>
+                        <input required type="text" class="form-control" onkeyup="addHyphen(this)" maxlength="19"
+                            name="cardnum" id="cardnum" pattern="^\d{4}-\d{4}-\d{4}-\d{4}$"
+                            placeholder="XXXX-XXXX-XXXX-XXXX">
+                    </div>
+                    <!-- CVC Code -->
+                    <div class="col-5 col-sm-3">
+                        <label for="cvc">CVC #</label>
+                        <input required type="text" class="form-control" maxlength="3" id="cvc" pattern="[0-9]{3}"
+                            placeholder="000">
+                    </div>
+                    <!-- Amount -->
+                    <div class="col-7 col-sm-4">
+                        <label for="amount">Amount</label>
+                        <div class="d-flex align-items-center justify-content-center gap-1">
+                            <p for="amount" class="fw-bold m-0">$</p>
+                            <input required type="number" class="form-control" id="amount" pattern="[0-9]"
+                                placeholder="Amount">
+                        </div>
+                    </div>
+                </div>
+                <!-- Third row -->
+                <div class="row mb-2">
+                    <!-- First name -->
+                    <div class="col-sm-6">
+                        <label for="firstname">First Name</label>
+                        <input required type="text" class="form-control" id="firstname">
+                    </div>
+                    <!-- Last name -->
+                    <div class="col-sm-6">
+                        <label for="lastname">Last Name</label>
+                        <input required type="text" class="form-control" id="lastname">
+                    </div>
+                </div>
+                <!-- Fourth row -->
+                <div class="row mb-2">
+                    <!-- City name -->
+                    <div class="col-6 col-sm-6">
+                        <label for="city">City</label>
+                        <input required type="text" class="form-control" id="city">
+                    </div>
+                    <!-- Postal Code -->
+                    <div class="col-6 col-sm-3">
+                        <label for="postal">Postal Code</label>
+                        <input required type="text" class="form-control" id="postal" pattern="[0-9]{5}" maxlength="5">
+                    </div>
+                    <!-- Select options -->
+                    <div class="col-sm-3">
+                        <label for="region">Region</label>
+                        <select required type="text" class="form-select" id="region">
+                            <option selected disabled>Pick a region</option>
+                            <option value="madrid">Madrid</option>
+                            <option value="valencia">Valencia</option>
+                            <option value="calatunya">Catalunya</option>
+                            <option value="andalucia">Andalucía</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Fifth row -->
+                <div class="row mb-2">
+                    <!-- Selección radio tipo tarjeta -->
+                    <div class="col-sm-5 col-md-5 col-lg-4">
+                        <label class="mb-3" for="cardtype">We accept:</label>
+                        <div class="rounded bg-secondary d-flex flex-wrap justify-content-evenly pb-1" id="cardtype">
+                            <div
+                                class="d-flex justify-content-center align-items-center gap-1 form-check form-check-inline m-1 mx-2">
+                                <input required class="form-check-input" name="cardtype" type="radio" id="mastercard">
+                                <label for="mastercard"><svg class="icons" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                        y="0px" width="100" height="100" viewBox="0 0 50 50">
+                                        <path
+                                            d="M 5 7 C 2.25 7 0 9.25 0 12 L 0 38 C 0 40.75 2.25 43 5 43 L 45 43 C 47.75 43 50 40.75 50 38 L 50 12 C 50 9.25 47.75 7 45 7 Z M 5 9 L 45 9 C 46.667969 9 48 10.332031 48 12 L 48 38 C 48 39.667969 46.667969 41 45 41 L 5 41 C 3.332031 41 2 39.667969 2 38 L 2 12 C 2 10.332031 3.332031 9 5 9 Z M 17 13 C 10.382813 13 5 18.382813 5 25 C 5 31.617188 10.382813 37 17 37 C 20.078125 37 22.875 35.816406 25 33.90625 C 27.125 35.816406 29.925781 37 33 37 C 39.617188 37 45 31.617188 45 25 C 45 18.382813 39.617188 13 33 13 C 29.925781 13 27.125 14.183594 25 16.09375 C 22.875 14.183594 20.078125 13 17 13 Z M 33 15 C 38.535156 15 43 19.464844 43 25 C 43 30.535156 38.535156 35 33 35 C 30.449219 35 28.109375 34.066406 26.34375 32.5 C 27.996094 30.441406 29 27.839844 29 25 C 29 22.160156 27.996094 19.558594 26.34375 17.5 C 28.109375 15.933594 30.449219 15 33 15 Z">
+                                        </path>
+                                    </svg>
+                                </label>
+                            </div>
+                            <div
+                                class="d-flex justify-content-center align-items-center gap-1 form-check form-check-inline m-1 mx-2">
+                                <input class="form-check-input" name="cardtype" type="radio" id="visa">
+                                <label for="visa"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                        height="100" viewBox="0 0 50 50">
+                                        <path
+                                            d="M 5 7 C 2.25 7 0 9.25 0 12 L 0 38 C 0 40.75 2.25 43 5 43 L 45 43 C 47.75 43 50 40.75 50 38 L 50 12 C 50 9.25 47.75 7 45 7 Z M 5 9 L 45 9 C 46.667969 9 48 10.332031 48 12 L 48 38 C 48 39.667969 46.667969 41 45 41 L 5 41 C 3.332031 41 2 39.667969 2 38 L 2 12 C 2 10.332031 3.332031 9 5 9 Z M 29.6875 19.40625 C 26.585938 19.40625 25 20.933594 25 22.875 C 25 26.386719 29.0625 25.914063 29.0625 27.71875 C 29.0625 28.023438 28.828125 28.75 27.125 28.75 C 25.417969 28.75 24.3125 28.09375 24.3125 28.09375 L 23.78125 30.46875 C 23.78125 30.46875 24.886719 31.09375 27 31.09375 C 29.113281 31.09375 32.03125 29.476563 32.03125 27.125 C 32.03125 24.296875 27.96875 24.074219 27.96875 22.8125 C 27.96875 22.167969 28.46875 21.6875 29.9375 21.6875 C 30.890625 21.6875 31.96875 22.40625 31.96875 22.40625 L 32.46875 19.96875 C 32.46875 19.96875 31.050781 19.40625 29.6875 19.40625 Z M 16.46875 19.625 L 13.78125 27.5625 C 13.78125 27.5625 13.597656 26.886719 13.53125 26.46875 C 11.996094 23.023438 9.5 21.75 9.5 21.75 L 11.875 30.75 L 15.125 30.75 L 19.625 19.625 Z M 20.78125 19.625 L 19.03125 30.75 L 22 30.75 L 23.78125 19.625 Z M 36.8125 19.625 L 31.96875 30.75 L 34.90625 30.75 L 35.5 29.15625 L 39.1875 29.15625 L 39.5 30.75 L 42.1875 30.75 L 39.90625 19.625 Z M 6.25 19.65625 C 6.25 19.65625 12.054688 21.453125 13.40625 25.8125 L 12.40625 20.75 C 12.40625 20.75 11.976563 19.65625 10.8125 19.65625 Z M 37.9375 22.84375 L 38.75 27.03125 L 36.3125 27.03125 Z">
+                                        </path>
+                                    </svg>
+                                </label>
+                            </div>
+                            <div
+                                class="d-flex justify-content-center align-items-center gap-1 form-check form-check-inline m-1 mx-2">
+                                <input class="form-check-input" name="cardtype" type="radio" id="amex">
+                                <label for="amex"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                        height="100" viewBox="0 0 50 50">
+                                        <path
+                                            d="M 5 7 C 2.25 7 0 9.25 0 12 L 0 38 C 0 40.75 2.25 43 5 43 L 45 43 C 47.75 43 50 40.75 50 38 L 50 12 C 50 9.25 47.75 7 45 7 Z M 5 9 L 45 9 C 46.667969 9 48 10.332031 48 12 L 48 38 C 48 39.667969 46.667969 41 45 41 L 5 41 C 3.332031 41 2 39.667969 2 38 L 2 12 C 2 10.332031 3.332031 9 5 9 Z M 8.5625 19.90625 L 4.84375 28.40625 L 7.0625 28.40625 L 7.875 26.5 L 12.0625 26.5 L 12.875 28.40625 L 17.09375 28.40625 L 17.09375 22.09375 L 19.90625 28.40625 L 21.8125 28.40625 L 24.65625 22.1875 L 24.65625 28.40625 L 26.75 28.40625 L 26.75 19.90625 L 23.40625 19.90625 L 20.84375 25.625 L 18.28125 19.90625 L 15 19.90625 L 15 28.09375 L 11.34375 19.90625 Z M 29.5 19.90625 L 29.5 28.4375 L 37.5 28.4375 L 40 25.59375 L 42.46875 28.4375 L 45.125 28.4375 L 41.375 24.0625 L 45.125 19.90625 L 42.46875 19.90625 L 40.0625 22.5625 L 37.75 19.90625 Z M 9.90625 21.6875 L 11.21875 24.6875 L 8.65625 24.6875 Z M 31.5625 21.71875 L 36.65625 21.75 L 38.6875 24.0625 L 36.40625 26.625 L 31.5625 26.625 L 31.5625 24.9375 L 36.1875 24.9375 L 36.1875 23.3125 L 31.5625 23.3125 Z">
+                                        </path>
+                                    </svg>
+                                </label>
+                            </div>
+                            <div
+                                class="d-flex justify-content-center align-items-center gap-1 form-check form-check-inline m-1 mx-2">
+                                <input class="form-check-input" name="cardtype" type="radio" id="bitcoin">
+                                <label for="bitcoin"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                        height="100" viewBox="0 0 50 50">
+                                        <path
+                                            d="M 25 2 C 12.264481 2 2 12.264481 2 25 C 2 37.735519 12.264481 48 25 48 C 37.735519 48 48 37.735519 48 25 C 48 12.264481 37.735519 2 25 2 z M 25 4 C 36.664481 4 46 13.335519 46 25 C 46 36.664481 36.664481 46 25 46 C 13.335519 46 4 36.664481 4 25 C 4 13.335519 13.335519 4 25 4 z M 21 10 L 21 13 L 16 13 L 16 37 L 21 37 L 21 40 L 23 40 L 23 37 L 25 37 L 25 40 L 27 40 L 27 37 C 29.3 36.9 34.800781 36.299219 34.800781 30.199219 C 34.800781 25.999219 31.199219 24.600391 29.699219 24.400391 L 29.699219 24.300781 C 30.399219 24.100781 33.900391 23.000391 33.900391 18.900391 C 33.900391 13.800391 29.1 13.1 27 13 L 27 10 L 25 10 L 25 13 L 23 13 L 23 10 L 21 10 z M 18.300781 14.900391 L 26.199219 14.900391 C 29.799219 14.900391 31.599609 16.400391 31.599609 19.400391 C 31.599609 20.600391 31.200781 21.500781 30.300781 22.300781 C 29.200781 23.200781 27.799219 23.5 26.199219 23.5 L 18.300781 23.5 L 18.300781 14.900391 z M 18.300781 25.5 L 26.199219 25.5 C 28.199219 25.5 29.800391 25.899219 30.900391 26.699219 C 32.000391 27.499219 32.5 28.699219 32.5 30.199219 C 32.5 30.599219 32.500391 31.000781 32.400391 31.300781 C 32.200391 32.400781 31.499609 33.499609 30.599609 34.099609 C 29.299609 34.999609 27.899219 34.999609 26.199219 35.099609 L 18.300781 35.099609 L 18.300781 25.5 z">
+                                        </path>
+                                    </svg>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Texarea optional message -->
+                    <div class="col-sm-6 ms-auto">
+                        <label for="textarea">Message</label>
+                        <textarea class="form-control"></textarea>
+                        <p id="msghelp" class="form-text">Add any notes here.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Form footer -->
+            <div class="hstack card-footer">
+                <div class="ms-auto">
+                    <button class="btn btn-secondary me-1">Cancel</button>
+                    <button class="btn btn-primary " type="submit">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
